@@ -1,0 +1,10 @@
+name: ExportsPlugin
+version: 0.1
+main: com.characterlim.exportsplugin.ExportsPlugin
+depend: [Citizens]
+commands:
+  exports:
+    description: The root command for Exports.
+    usage: /exports
+    permission: exportsplugin.exports
+    permission-message: You don't have the right permission to do this.
