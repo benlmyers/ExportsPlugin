@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 
-public abstract class ParentCommand implements CustomCommand {
+public abstract class MiddleCommand extends ChildCommand {
 
     protected HashMap<String, ChildCommand> children = new HashMap<>();
 
@@ -28,4 +28,5 @@ public abstract class ParentCommand implements CustomCommand {
         }
         return false;
     }
+
 }

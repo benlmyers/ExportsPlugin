@@ -8,7 +8,7 @@ public abstract class ChildCommand implements CustomCommand {
 
     public abstract List<String> completions(String arg);
 
-    public String thisCommand(ParentCommand parentCommand) {
+    public String thisCommand(CustomCommand parentCommand) {
         return parentCommand.thisCommand() + " " + thisCommand();
     }
 }
