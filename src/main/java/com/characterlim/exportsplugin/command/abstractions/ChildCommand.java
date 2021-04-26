@@ -4,11 +4,11 @@ import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-public interface ChildCommand extends CustomCommand {
+public abstract class ChildCommand implements CustomCommand {
 
-    boolean onCommand(CommandSender sender, String[] args);
+    public abstract List<String> completions(String arg);
 
-    List<String> completions(String arg);
-
-    String thisCommand(ParentCommand parentCommand);
+    public String thisCommand(ParentCommand parentCommand) {
+        return parentCommand.thisCommand() + " " + thisCommand();
+    }
 }

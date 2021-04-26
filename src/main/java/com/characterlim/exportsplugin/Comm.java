@@ -14,7 +14,7 @@ public class Comm {
     }
 
     public static void sendHelp(Player player, String command, String explanation) {
-        sendPrefixless(player, "§e/" + command + ": §b" + explanation);
+        sendPrefixless(player, "§e/" + command + ": §7" + explanation);
     }
 
     public static String colorify(String message) {
