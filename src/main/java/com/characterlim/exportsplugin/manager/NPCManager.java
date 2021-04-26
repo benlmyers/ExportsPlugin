@@ -1,5 +1,6 @@
 package com.characterlim.exportsplugin.manager;
 
+import com.characterlim.exportsplugin.config.ConfigManager;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.trait.SkinTrait;
@@ -11,14 +12,25 @@ public class NPCManager {
     private static NPC npc;
 
     public static void placeNPC(Player player) {
-        npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, "Traveler");
+        npc = CitizensAPI.getNPCRegistry().getById(ConfigManager.getNPC_ID());
+        if(npc == null) {
+            npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, "Traveler");
+            ConfigManager.setNPC_ID(npc.getId());
+        }
         npc.spawn(player.getLocation());
-        SkinTrait skinTrait = npc.getOrAddTrait(SkinTrait.class);
-        System.out.println(skinTrait.getSkinName());
-        skinTrait.setSkinName("CodeSensei_Ben");
+        updateSkin();
     }
 
     public static void reload() {
 
+    }
+
+    public static void disable() {
+        CitizensAPI.getNPCRegistry().despawnNPCs(null);
+    }
+
+    private static void updateSkin() {
+        SkinTrait skinTrait = npc.getOrAddTrait(SkinTrait.class);
+        skinTrait.setSkinName("CodeSensei_Ben");
     }
 }

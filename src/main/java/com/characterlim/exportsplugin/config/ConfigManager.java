@@ -10,6 +10,7 @@ public class ConfigManager {
     private static final String PREFIX_KEY = "prefix";
     private static final String SHOULD_LOG_KEY = "log-to-console";
     private static final String NPC_SKIN_NAME_KEY = "npc-skin";
+    private static final String NPC_ID_KEY = "npc-id";
 
     public static void prepare(JavaPlugin plugin) {
         plugin.saveDefaultConfig();
@@ -46,6 +47,14 @@ public class ConfigManager {
 
     public static void setNPCSkin(String value) {
         config.set(NPC_SKIN_NAME_KEY, value);
+    }
+
+    public static int getNPC_ID() {
+        return config.getInt(NPC_ID_KEY);
+    }
+
+    public static void setNPC_ID(int value) {
+        config.set(NPC_ID_KEY, value);
     }
 
     private static void prepareDefaults() {

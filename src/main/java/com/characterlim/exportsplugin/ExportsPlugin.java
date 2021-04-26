@@ -4,6 +4,7 @@ import com.characterlim.exportsplugin.command.util.ExportsCommand;
 import com.characterlim.exportsplugin.config.ConfigManager;
 import com.characterlim.exportsplugin.debug.Debug;
 import com.characterlim.exportsplugin.debug.DependencyChecker;
+import com.characterlim.exportsplugin.manager.NPCManager;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -26,5 +27,6 @@ public class ExportsPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        NPCManager.disable();
     }
 }
