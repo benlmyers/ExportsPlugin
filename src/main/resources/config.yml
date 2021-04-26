@@ -10,3 +10,6 @@ prefix: "[Traveler]"
 
 # Should debug messages be logged to the server's console?
 log-to-console: true
+
+# The username of the skin to use for the traveler
+npc-skin: "anchiebee"

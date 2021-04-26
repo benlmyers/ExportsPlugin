@@ -7,6 +7,7 @@ import com.characterlim.exportsplugin.command.npc.NPCCommand;
 import com.characterlim.exportsplugin.command.abstractions.ChildCommand;
 import com.characterlim.exportsplugin.command.abstractions.ParentCommand;
 import com.characterlim.exportsplugin.config.ConfigManager;
+import com.characterlim.exportsplugin.manager.NPCManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -77,6 +78,7 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
         if(sender instanceof Player) {
             Player player = (Player) sender;
             ConfigManager.reload();
+            NPCManager.reload();
             Comm.send(player, "The plugin has successfully reloaded!");
             return true;
         }

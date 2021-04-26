@@ -11,8 +11,6 @@ import java.util.List;
 
 public class NPCCommand extends MiddleCommand {
 
-    private final HashMap<String, ChildCommand> children = new HashMap<>();
-
     public NPCCommand() {
         children.put("place", new PlaceNPCCommand());
     }
