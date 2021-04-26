@@ -31,16 +31,7 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
-        if(args.length == 0) {
-            return doHelp(commandSender);
-        } else {
-            String arg = args[0].toLowerCase();
-            if(arg.equals("reload")) return doReload(commandSender);
-            else if(arg.equals("help")) return doHelp(commandSender);
-            else {
-                return false;
-            }
-        }
+        return onCommand(commandSender, args);
     }
 
     @Override
@@ -51,6 +42,20 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
             //...
         }
         return new ArrayList<>();
+    }
+
+    @Override
+    public boolean onCommand(CommandSender commandSender, String[] args) {
+        if(args.length == 0) {
+            return doHelp(commandSender);
+        } else {
+            String arg = args[0].toLowerCase();
+            if(arg.equals("reload")) return doReload(commandSender);
+            else if(arg.equals("help")) return doHelp(commandSender);
+            else {
+                return false;
+            }
+        }
     }
 
     @Override

@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-public class NPCCommand implements ChildCommand {
+public class NPCCommand extends ChildCommand {
 
     public NPCCommand() {
     }
@@ -19,11 +19,6 @@ public class NPCCommand implements ChildCommand {
     @Override
     public List<String> completions(String arg) {
         return null;
-    }
-
-    @Override
-    public String thisCommand(ParentCommand parentCommand) {
-        return parentCommand.thisCommand() + " " + thisCommand();
     }
 
     @Override
