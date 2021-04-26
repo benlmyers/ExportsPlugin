@@ -12,11 +12,13 @@ public class NPCManager {
     private static NPC npc;
 
     public static void placeNPC(Player player) {
-        npc = CitizensAPI.getNPCRegistry().getById(ConfigManager.getNPC_ID());
-        if(npc == null) {
-            npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, "Traveler");
+        try {
+            npc = CitizensAPI.getNPCRegistry().getById(ConfigManager.getNPC_ID());
+        } catch(Exception e) {
+            npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, "Merchant");
             ConfigManager.setNPC_ID(npc.getId());
         }
+        npc.despawn();
         npc.spawn(player.getLocation());
         updateSkin();
     }
@@ -31,6 +33,6 @@ public class NPCManager {
 
     private static void updateSkin() {
         SkinTrait skinTrait = npc.getOrAddTrait(SkinTrait.class);
-        skinTrait.setSkinName("CodeSensei_Ben");
+        skinTrait.setSkinName(ConfigManager.getNPCSkin());
     }
 }

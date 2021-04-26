@@ -37,7 +37,10 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
         if(args.length == 1) {
             return completions(args[0]);
         } else if(args.length == 2) {
-            //...
+            ChildCommand child = children.get(args[1]);
+            if(child != null) {
+                return child.completions(args[1]);
+            }
         }
         return new ArrayList<>();
     }

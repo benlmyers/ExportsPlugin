@@ -6,10 +6,13 @@
 #####################################################################
 
 # The prefix that appears in front of all in-game messages from this plugin.
-prefix: "[Traveler]"
+prefix: "&b[&9Merchant&b] "
 
 # Should debug messages be logged to the server's console?
 log-to-console: true
 
 # The username of the skin to use for the traveler
 npc-skin: "anchiebee"
+
+# Don't change this!
+npc-id: -1
