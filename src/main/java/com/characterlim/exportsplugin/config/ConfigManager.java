@@ -18,8 +18,11 @@ public class ConfigManager {
         plugin.saveDefaultConfig();
     }
 
-    public static String getPrefix() {
+    public static void reload() {
         config = plugin.getConfig();
+    }
+
+    public static String getPrefix() {
         return config.getString(PREFIX_KEY);
     }
 
@@ -29,7 +32,6 @@ public class ConfigManager {
     }
 
     public static boolean getShouldLog() {
-        config = plugin.getConfig();
         return config.getBoolean(SHOULD_LOG_KEY);
     }
 
