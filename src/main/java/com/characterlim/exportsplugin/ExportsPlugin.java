@@ -1,6 +1,6 @@
 package com.characterlim.exportsplugin;
 
-import com.characterlim.exportsplugin.command.util.ExportsCommand;
+import com.characterlim.exportsplugin.command.ExportsCommand;
 import com.characterlim.exportsplugin.config.ConfigManager;
 import com.characterlim.exportsplugin.debug.Debug;
 import com.characterlim.exportsplugin.debug.DependencyChecker;
@@ -22,6 +22,7 @@ public class ExportsPlugin extends JavaPlugin {
         this.getCommand("exports").setTabCompleter(exportsCommand);
         dependencyChecker = new DependencyChecker(this, pluginNames);
         dependencyChecker.check();
+        NPCManager.enable();
         Debug.log("Setup complete.");
     }
 

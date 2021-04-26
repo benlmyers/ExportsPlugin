@@ -1,9 +1,9 @@
-package com.characterlim.exportsplugin.command.util;
+package com.characterlim.exportsplugin.command;
 
 import com.characterlim.exportsplugin.command.abstractions.MiddleCommand;
+import com.characterlim.exportsplugin.command.util.CompletionsGenerator;
 import com.characterlim.exportsplugin.communication.Comm;
 import com.characterlim.exportsplugin.ExportsPlugin;
-import com.characterlim.exportsplugin.command.CompletionsGenerator;
 import com.characterlim.exportsplugin.command.npc.NPCCommand;
 import com.characterlim.exportsplugin.command.abstractions.ChildCommand;
 import com.characterlim.exportsplugin.command.abstractions.ParentCommand;
@@ -84,8 +84,7 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
     private boolean doReload(CommandSender sender) {
         if(sender instanceof Player) {
             Player player = (Player) sender;
-            ConfigManager.reload();
-            NPCManager.reload();
+            plugin.onEnable();
             Comm.send(player, "The plugin has successfully reloaded!");
             return true;
         }

@@ -1,6 +1,5 @@
 package com.characterlim.exportsplugin.command.npc;
 
-import com.characterlim.exportsplugin.command.CompletionsGenerator;
 import com.characterlim.exportsplugin.command.abstractions.ChildCommand;
 import com.characterlim.exportsplugin.communication.Comm;
 import com.characterlim.exportsplugin.manager.NPCManager;

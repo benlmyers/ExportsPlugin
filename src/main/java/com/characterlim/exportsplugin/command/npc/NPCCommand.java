@@ -1,12 +1,10 @@
 package com.characterlim.exportsplugin.command.npc;
 
-import com.characterlim.exportsplugin.command.CompletionsGenerator;
+import com.characterlim.exportsplugin.command.util.CompletionsGenerator;
 import com.characterlim.exportsplugin.command.abstractions.ChildCommand;
 import com.characterlim.exportsplugin.command.abstractions.MiddleCommand;
-import com.characterlim.exportsplugin.command.abstractions.ParentCommand;
 import org.bukkit.command.CommandSender;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class NPCCommand extends MiddleCommand {

@@ -1,4 +1,4 @@
-package com.characterlim.exportsplugin.command;
+package com.characterlim.exportsplugin.command.util;
 
 import org.bukkit.util.StringUtil;
 

@@ -1,18 +1,20 @@
-#####################################################################
-#                                                                   #
-#                            Exports Plugin                         #
-#                       created by Characterlim                     #
-#                                                                   #
-#####################################################################
-
-# The prefix that appears in front of all in-game messages from this plugin.
 prefix: "&b[&9Merchant&b] "
 
-# Should debug messages be logged to the server's console?
 log-to-console: true
 
-# The username of the skin to use for the traveler
-npc-skin: "anchiebee"
+npc:
 
-# Don't change this!
-npc-id: -1
+  id: 19
+
+  skin: anchiebee
+
+  name: Merchant
+
+  location:
+    ==: org.bukkit.Location
+    world: world
+    x: -255.27268087761536
+    y: 64.0
+    z: 160.19524875639436
+    pitch: 19.500166
+    yaw: 323.91772
