@@ -1,4 +1,4 @@
-package com.characterlim.exportsplugin;
+package com.characterlim.exportsplugin.communication;
 
 import com.characterlim.exportsplugin.config.ConfigManager;
 import org.bukkit.entity.Player;

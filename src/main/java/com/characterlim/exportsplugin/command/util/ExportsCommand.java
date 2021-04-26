@@ -1,9 +1,9 @@
 package com.characterlim.exportsplugin.command.util;
 
-import com.characterlim.exportsplugin.Comm;
+import com.characterlim.exportsplugin.communication.Comm;
 import com.characterlim.exportsplugin.ExportsPlugin;
 import com.characterlim.exportsplugin.command.CompletionsGenerator;
-import com.characterlim.exportsplugin.command.NPCCommand;
+import com.characterlim.exportsplugin.command.npc.NPCCommand;
 import com.characterlim.exportsplugin.command.abstractions.ChildCommand;
 import com.characterlim.exportsplugin.command.abstractions.ParentCommand;
 import com.characterlim.exportsplugin.config.ConfigManager;
@@ -13,14 +13,11 @@ import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 public class ExportsCommand extends ParentCommand implements TabExecutor {
 
     private final ExportsPlugin plugin;
-    private final HashMap<String, ChildCommand> children = new HashMap<>();
 
     public ExportsCommand(ExportsPlugin instance) {
         this.plugin = instance;
@@ -53,7 +50,10 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
             if(arg.equals("reload")) return doReload(commandSender);
             else if(arg.equals("help")) return doHelp(commandSender);
             else {
-                return false;
+                ChildCommand child = children.get(arg);
+                if(child != null) {
+                    return executeChildCommand(commandSender, args, child);
+                } else return false;
             }
         }
     }
@@ -78,19 +78,6 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
             Player player = (Player) sender;
             ConfigManager.reload();
             Comm.send(player, "The plugin has successfully reloaded!");
-            return true;
-        }
-        return false;
-    }
-
-    private boolean doHelp(CommandSender sender) {
-        if(sender instanceof Player) {
-            Player player = (Player) sender;
-            Comm.sendHelp(player, thisCommand(), helpMessage());
-            for(String key : children.keySet()) {
-                ChildCommand childCommand = children.get(key);
-                if(childCommand != null) Comm.sendHelp(player, childCommand.thisCommand(this), childCommand.helpMessage());
-            }
             return true;
         }
         return false;
