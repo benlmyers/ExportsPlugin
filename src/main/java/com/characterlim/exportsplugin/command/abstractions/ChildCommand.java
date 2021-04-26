@@ -9,4 +9,6 @@ public interface ChildCommand extends CustomCommand {
     boolean onCommand(CommandSender sender, String[] args);
 
     List<String> completions(String arg);
+
+    String thisCommand(ParentCommand parentCommand);
 }

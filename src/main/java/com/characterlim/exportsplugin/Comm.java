@@ -9,6 +9,14 @@ public class Comm {
         player.sendMessage(colorify(ConfigManager.getPrefix() + message));
     }
 
+    public static void sendPrefixless(Player player, String message) {
+        player.sendMessage(colorify(message));
+    }
+
+    public static void sendHelp(Player player, String command, String explanation) {
+        sendPrefixless(player, "§e/" + command + ": §b" + explanation);
+    }
+
     public static String colorify(String message) {
         return message.replaceAll("&", "§");
     }

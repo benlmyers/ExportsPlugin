@@ -21,11 +21,12 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
 
     private final ExportsPlugin plugin;
     private final HashMap<String, ChildCommand> children = new HashMap<>();
-    private final String helpMessage = "The base command for the ExportsPlugin";
 
     public ExportsCommand(ExportsPlugin instance) {
         this.plugin = instance;
         children.put("npc", new NPCCommand());
+        children.put("help", null);
+        children.put("reload", null);
     }
 
     @Override
@@ -57,6 +58,16 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
         return CompletionsGenerator.generate(children.keySet(), arg);
     }
 
+    @Override
+    public String helpMessage() {
+        return "The base command for the ExportsPlugin";
+    }
+
+    @Override
+    public String thisCommand() {
+        return "exports";
+    }
+
     private boolean doReload(CommandSender sender) {
         if(sender instanceof Player) {
             Player player = (Player) sender;
@@ -70,8 +81,11 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
     private boolean doHelp(CommandSender sender) {
         if(sender instanceof Player) {
             Player player = (Player) sender;
-            Comm.send(player, helpMessage);
-            for(String key : children.keySet()) Comm.send(player, children.get(key).helpMessage);
+            Comm.sendHelp(player, thisCommand(), helpMessage());
+            for(String key : children.keySet()) {
+                ChildCommand childCommand = children.get(key);
+                if(childCommand != null) Comm.sendHelp(player, childCommand.thisCommand(this), childCommand.helpMessage());
+            }
             return true;
         }
         return false;

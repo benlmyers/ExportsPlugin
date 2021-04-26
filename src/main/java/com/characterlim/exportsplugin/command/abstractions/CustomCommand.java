@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface CustomCommand {
     List<String> completions(String arg);
-    String helpMessage = "This is a template help message!";
+    String helpMessage();
+    String thisCommand();
 }
