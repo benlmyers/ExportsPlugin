@@ -1,5 +1,6 @@
 package com.characterlim.exportsplugin.command.util;
 
+import com.characterlim.exportsplugin.command.abstractions.MiddleCommand;
 import com.characterlim.exportsplugin.communication.Comm;
 import com.characterlim.exportsplugin.ExportsPlugin;
 import com.characterlim.exportsplugin.command.CompletionsGenerator;
@@ -37,9 +38,12 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
         if(args.length == 1) {
             return completions(args[0]);
         } else if(args.length == 2) {
-            ChildCommand child = children.get(args[1]);
+            ChildCommand child = children.get(args[0]);
             if(child != null) {
-                return child.completions(args[1]);
+                if(child instanceof MiddleCommand) {
+                    MiddleCommand middle = (MiddleCommand) child;
+                    return middle.onChildTabComplete(commandSender, args);
+                }
             }
         }
         return new ArrayList<>();
