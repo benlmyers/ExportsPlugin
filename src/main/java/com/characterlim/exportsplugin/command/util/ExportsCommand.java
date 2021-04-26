@@ -56,7 +56,7 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
         if(sender instanceof Player) {
             Player player = (Player) sender;
             ConfigManager.reload();
-            Comm.send(player, "The plugin has successfully reloaded 3!");
+            Comm.send(player, "The plugin has successfully reloaded!");
             return true;
         }
         return false;
