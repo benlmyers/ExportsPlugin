@@ -3,6 +3,8 @@ package com.characterlim.exportsplugin.command.util;
 import com.characterlim.exportsplugin.Comm;
 import com.characterlim.exportsplugin.ExportsPlugin;
 import com.characterlim.exportsplugin.command.CompletionsGenerator;
+import com.characterlim.exportsplugin.command.NPCCommand;
+import com.characterlim.exportsplugin.command.abstractions.ChildCommand;
 import com.characterlim.exportsplugin.command.abstractions.ParentCommand;
 import com.characterlim.exportsplugin.config.ConfigManager;
 import org.bukkit.command.Command;
@@ -11,16 +13,19 @@ import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 public class ExportsCommand extends ParentCommand implements TabExecutor {
 
     private final ExportsPlugin plugin;
-    private final String[] children = {"help", "reload"};
+    private final HashMap<String, ChildCommand> children = new HashMap<>();
+    private final String helpMessage = "The base command for the ExportsPlugin";
 
     public ExportsCommand(ExportsPlugin instance) {
         this.plugin = instance;
+        children.put("npc", new NPCCommand());
     }
 
     @Override
@@ -49,7 +54,7 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
 
     @Override
     public List<String> completions(String arg) {
-        return CompletionsGenerator.generate(children, arg);
+        return CompletionsGenerator.generate(children.keySet(), arg);
     }
 
     private boolean doReload(CommandSender sender) {
@@ -63,6 +68,12 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
     }
 
     private boolean doHelp(CommandSender sender) {
+        if(sender instanceof Player) {
+            Player player = (Player) sender;
+            Comm.send(player, helpMessage);
+            for(String key : children.keySet()) Comm.send(player, children.get(key).helpMessage);
+            return true;
+        }
         return false;
     }
 }

@@ -6,8 +6,6 @@ import org.bukkit.command.CommandSender;
 import java.util.List;
 
 public interface CustomCommand {
-
-    void executeChildCommand(CommandSender commandSender, String[] args, ChildCommand child);
-
     List<String> completions(String arg);
+    String helpMessage = "This is a template help message!";
 }

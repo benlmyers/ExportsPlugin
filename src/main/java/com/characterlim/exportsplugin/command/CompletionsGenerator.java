@@ -4,6 +4,7 @@ import org.bukkit.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class CompletionsGenerator {
 
@@ -13,5 +14,9 @@ public class CompletionsGenerator {
         for(String str : arr) commands.add(str);
         StringUtil.copyPartialMatches(arg, commands, completions);
         return completions;
+    }
+
+    public static List<String> generate(Set<String> set, String arg) {
+        return generate(set.toArray(new String[0]), arg);
     }
 }
