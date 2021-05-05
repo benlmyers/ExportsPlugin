@@ -33,7 +33,7 @@ public abstract class MiddleCommand extends ChildCommand {
             Comm.sendHelp(player, thisCommand(), helpMessage());
             for(String key : children.keySet()) {
                 ChildCommand childCommand = children.get(key);
-                if(childCommand != null) Comm.sendHelp(player, childCommand.thisCommand(this), childCommand.helpMessage());
+                if(childCommand != null) Comm.sendSubHelp(player, childCommand.thisCommand(this), childCommand.helpMessage());
             }
             return true;
         }

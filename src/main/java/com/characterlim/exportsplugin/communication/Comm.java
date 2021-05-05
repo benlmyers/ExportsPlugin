@@ -17,6 +17,10 @@ public class Comm {
         sendPrefixless(player, "§e/" + command + ": §7" + explanation);
     }
 
+    public static void sendSubHelp(Player player, String command, String explanation) {
+        sendPrefixless(player, "§e/§7...§e " + command + ": §7" + explanation);
+    }
+
     public static String colorify(String message) {
         return message.replaceAll("&", "§");
     }
