@@ -1,5 +1,5 @@
 name: ExportsPlugin
-version: 0.1
+version: 1.0
 main: com.characterlim.exportsplugin.ExportsPlugin
 depend: [Citizens, Vault]
 commands:

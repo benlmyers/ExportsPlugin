@@ -19,21 +19,9 @@ public class RotationManager {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             @Override
             public void run() {
-                List<String> items = ConfigManager.getExportItems();
-                Material newItem = acceptedItem;
-                int count = 3;
-                while(newItem == acceptedItem && count > 0) {
-                    newItem = Material.getMaterial(items.get((int) Math.floor(items.size() * Math.random())));
-                    if(newItem == null) {
-                        newItem = Material.BONE;
-                    }
-                    count -= 1;
-                }
-                acceptedItem = newItem;
-                int sellPrice = PriceManager.getSellPrice(acceptedItem.toString());
-                Comm.broadcast("Stacks of &9" + getFormattedName(acceptedItem) + "&b are now available for export! Sell Price: " + EconomyManager.formatted(sellPrice));
+                rotate();
             }
-        }, 20 * 1, 20 * 30);
+        }, 20 * 1, 20 * 60 * ConfigManager.getTimeInterval());
     }
 
     public static Material getAcceptedItem() {
@@ -43,6 +31,22 @@ public class RotationManager {
     public static int getSellPrice() {
         int sellPrice = PriceManager.getSellPrice(acceptedItem.toString());
         return sellPrice;
+    }
+
+    public static void rotate() {
+        List<String> items = ConfigManager.getExportItems();
+        Material newItem = acceptedItem;
+        int count = 3;
+        while(newItem == acceptedItem && count > 0) {
+            newItem = Material.getMaterial(items.get((int) Math.floor(items.size() * Math.random())));
+            if(newItem == null) {
+                newItem = Material.BONE;
+            }
+            count -= 1;
+        }
+        acceptedItem = newItem;
+        int sellPrice = PriceManager.getSellPrice(acceptedItem.toString());
+        Comm.broadcast("Stacks of &9" + getFormattedName(acceptedItem) + "&b are now available for export! Sell Price: " + EconomyManager.formatted(sellPrice));
     }
 
     private static String getFormattedName(Material material) {

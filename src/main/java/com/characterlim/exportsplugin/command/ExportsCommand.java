@@ -9,6 +9,7 @@ import com.characterlim.exportsplugin.command.abstractions.ChildCommand;
 import com.characterlim.exportsplugin.command.abstractions.ParentCommand;
 import com.characterlim.exportsplugin.config.ConfigManager;
 import com.characterlim.exportsplugin.manager.NPCManager;
+import com.characterlim.exportsplugin.manager.RotationManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -27,6 +28,7 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
         children.put("help", null);
         children.put("reload", null);
         children.put("itemname", null);
+        children.put("rotate", null);
     }
 
     @Override
@@ -59,6 +61,7 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
             if(arg.equals("reload")) return doReload(commandSender);
             else if(arg.equals("help")) return doHelp(commandSender);
             else if(arg.equals("itemname")) return itemName(commandSender);
+            else if(arg.equals("rotate")) return rotate();
             else {
                 ChildCommand child = children.get(arg);
                 if(child != null) {
@@ -101,5 +104,10 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
             return true;
         }
         return false;
+    }
+
+    private boolean rotate() {
+        RotationManager.rotate();
+        return true;
     }
 }

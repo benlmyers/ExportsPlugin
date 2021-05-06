@@ -4,6 +4,8 @@ log-to-console: true
 
 base-price: 1000
 
+time-interval: 15
+
 export-items:
   - 'IRON_INGOT'
   - 'GOLD_INGOT'

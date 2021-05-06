@@ -28,7 +28,7 @@ public class EconomyManager {
     public static void pay(Player player, float amount) {
         EconomyResponse r = econ.depositPlayer(player, amount);
         if(r.transactionSuccess()) {
-            Comm.send(player, "You have been paid &e" + EconomyManager.formatted((int)r.amount) + "&b for your exports!");
+            //Comm.send(player, "You have been paid &e" + EconomyManager.formatted((int)r.amount) + "&b for your exports!");
         } else {
             Comm.send(player, "An error occurred: &c" + r.errorMessage);
         }

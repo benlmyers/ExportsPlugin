@@ -21,6 +21,7 @@ public class ConfigManager {
     private static final String BASE_PRICE_KEY = "base-price";
     private static final String EXPORT_ITEMS_KEY = "export-items";
     private static final String EXPORT_COUNTS_KEY = "export-counts";
+    private static final String TIME_INTERVAL_KEY = "time-interval";
 
     public static void prepare(JavaPlugin plugin) {
         ConfigManager.plugin = plugin;
@@ -107,6 +108,10 @@ public class ConfigManager {
     public static void setExportCounts(List<Integer> items) {
         config.set(EXPORT_COUNTS_KEY, items);
         plugin.saveConfig();
+    }
+
+    public static int getTimeInterval() {
+        return config.getInt(TIME_INTERVAL_KEY);
     }
 
     private static void prepareDefaults() {

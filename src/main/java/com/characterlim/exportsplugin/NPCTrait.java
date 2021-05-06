@@ -39,7 +39,7 @@ public class NPCTrait extends Trait {
     @EventHandler
     public void click(NPCLeftClickEvent event) {
         if(event.getNPC() == this.getNPC()) {
-            Comm.send(event.getClicker(), "Accepted item: &964x " + getFormattedName(RotationManager.getAcceptedItem()) + "&b | Sell Price: " + EconomyManager.formatted(PriceManager.getSellPrice()));
+            Comm.send(event.getClicker(), "Accepted item: &964x " + getFormattedName(RotationManager.getAcceptedItem()) + "&b | Sell Price: " + EconomyManager.formatted(PriceManager.getSellPrice()) + "&8 (Right click Merchant to sell)");
         }
     }
 
