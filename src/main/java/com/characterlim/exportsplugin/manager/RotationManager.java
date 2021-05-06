@@ -13,14 +13,9 @@ import java.util.List;
 
 public class RotationManager {
 
-    private Material acceptedItem;
-    private Plugin plugin;
+    private static Material acceptedItem;
 
-    public RotationManager(Plugin instance) {
-        this.plugin = instance;
-    }
-
-    public void start() {
+    public static void start(Plugin plugin) {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             @Override
             public void run() {
@@ -36,8 +31,28 @@ public class RotationManager {
                 }
                 acceptedItem = newItem;
                 int sellPrice = PriceManager.getSellPrice(acceptedItem.toString());
-                Comm.broadcast("Stacks of &9" + acceptedItem.toString().toLowerCase() + "&b are now being exported! Sell Price: " + EconomyManager.formatted(sellPrice));
+                Comm.broadcast("Stacks of &9" + getFormattedName(acceptedItem) + "&b are now available for export! Sell Price: " + EconomyManager.formatted(sellPrice));
             }
-        }, 20 * 1, 20 * 10);
+        }, 20 * 1, 20 * 30);
+    }
+
+    public static Material getAcceptedItem() {
+        return acceptedItem;
+    }
+
+    public static int getSellPrice() {
+        int sellPrice = PriceManager.getSellPrice(acceptedItem.toString());
+        return sellPrice;
+    }
+
+    private static String getFormattedName(Material material) {
+        if ( material == null ) {
+            return null;
+        }
+        StringBuilder friendlyName = new StringBuilder();
+        for ( String word : material.name().split( "_" ) ) {
+            friendlyName.append( word.substring( 0, 1 ).toUpperCase() + word.substring( 1 ).toLowerCase() + " " );
+        }
+        return friendlyName.toString().trim();
     }
 }

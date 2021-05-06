@@ -14,7 +14,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class ExportsPlugin extends JavaPlugin {
 
     private final TabExecutor exportsCommand = new ExportsCommand(this);
-    private final RotationManager rotationManager = new RotationManager(this);
     private final String[] pluginNames = {"Citizens", "Vault"};
     private DependencyChecker dependencyChecker;
 
@@ -29,12 +28,13 @@ public class ExportsPlugin extends JavaPlugin {
         dependencyChecker.check();
         NPCManager.enable();
         Debug.log("Setup complete.");
-        rotationManager.start();
+        RotationManager.start(this);
         PriceManager.check();
     }
 
     @Override
     public void onDisable() {
         NPCManager.disable();
+        PriceManager.disable();
     }
 }

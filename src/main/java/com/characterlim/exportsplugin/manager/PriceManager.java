@@ -8,9 +8,12 @@ import java.util.List;
 
 public class PriceManager {
 
+    private static List<String> items;
+    private static List<Integer> counts;
+
     public static void check() {
-        List<String> items = ConfigManager.getExportItems();
-        List<Integer> counts = ConfigManager.getExportCounts();
+        items = ConfigManager.getExportItems();
+        counts = ConfigManager.getExportCounts();
         for(int i = items.size() - 1; i > 0; i--) {
             Material material = Material.getMaterial(items.get(i));
             if(material == null) {
@@ -25,13 +28,10 @@ public class PriceManager {
             for(int i = 0; i < diff; i++) {
                 counts.add(1);
             }
-            ConfigManager.setExportCounts(counts);
         }
     }
 
     public static int getSellPrice(String material) {
-        List<String> items = ConfigManager.getExportItems();
-        List<Integer> counts = ConfigManager.getExportCounts();
         int i = items.indexOf(material);
         int n = counts.get(i);
         int m = items.size();
@@ -43,13 +43,21 @@ public class PriceManager {
         return (int) Math.ceil(price);
     }
 
+    public static int getSellPrice() {
+        return getSellPrice(RotationManager.getAcceptedItem().toString());
+    }
+
     public static void addCount(String material) {
-        List<String> items = ConfigManager.getExportItems();
-        List<Integer> counts = ConfigManager.getExportCounts();
         int i = items.indexOf(material);
         int n = counts.get(i);
         n += 1;
+        Debug.log("Count added to index " + i + ": " + n);
         counts.set(i, n);
+        Debug.log("New count: " + counts.get(i));
+    }
+
+    public static void disable() {
+        ConfigManager.setExportItems(items);
         ConfigManager.setExportCounts(counts);
     }
 

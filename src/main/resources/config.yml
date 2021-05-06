@@ -5,9 +5,9 @@ log-to-console: true
 base-price: 1000
 
 export-items:
-  - 'iron_ingot'
-  - 'gold_ingot'
-  - 'diamond'
+  - 'IRON_INGOT'
+  - 'GOLD_INGOT'
+  - 'DIAMOND'
 
 export-counts:
   - 1
