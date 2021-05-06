@@ -1,7 +1,7 @@
 name: ExportsPlugin
 version: 0.1
 main: com.characterlim.exportsplugin.ExportsPlugin
-depend: [Citizens]
+depend: [Citizens, Vault]
 commands:
   exports:
     description: The root command for Exports.

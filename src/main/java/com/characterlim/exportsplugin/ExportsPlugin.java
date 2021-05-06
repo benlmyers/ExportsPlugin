@@ -4,6 +4,7 @@ import com.characterlim.exportsplugin.command.ExportsCommand;
 import com.characterlim.exportsplugin.config.ConfigManager;
 import com.characterlim.exportsplugin.debug.Debug;
 import com.characterlim.exportsplugin.debug.DependencyChecker;
+import com.characterlim.exportsplugin.manager.EconomyManager;
 import com.characterlim.exportsplugin.manager.NPCManager;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -11,13 +12,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class ExportsPlugin extends JavaPlugin {
 
     private final TabExecutor exportsCommand = new ExportsCommand(this);
-    private final String[] pluginNames = {"Citizens"};
+    private final String[] pluginNames = {"Citizens", "Vault"};
     private DependencyChecker dependencyChecker;
 
     @Override
     public void onEnable() {
         ConfigManager.prepare(this);
         Debug.prepare(this);
+        EconomyManager.prepare(this);
         this.getCommand("exports").setExecutor(exportsCommand);
         this.getCommand("exports").setTabCompleter(exportsCommand);
         dependencyChecker = new DependencyChecker(this, pluginNames);
