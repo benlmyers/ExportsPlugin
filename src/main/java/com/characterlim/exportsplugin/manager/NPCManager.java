@@ -1,13 +1,22 @@
 package com.characterlim.exportsplugin.manager;
 
+import com.characterlim.exportsplugin.ExportsPlugin;
+import com.characterlim.exportsplugin.NPCTrait;
+import com.characterlim.exportsplugin.communication.Comm;
 import com.characterlim.exportsplugin.config.ConfigManager;
 import com.characterlim.exportsplugin.debug.Debug;
 import net.citizensnpcs.api.CitizensAPI;
+import net.citizensnpcs.api.event.NPCRightClickEvent;
 import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.api.trait.Trait;
+import net.citizensnpcs.api.trait.TraitFactory;
+import net.citizensnpcs.api.trait.TraitInfo;
 import net.citizensnpcs.trait.SkinTrait;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class NPCManager {
 
@@ -47,6 +56,10 @@ public class NPCManager {
         if(loc != null) {
             npc.spawn(loc);
             ConfigManager.setNPCLocation(loc);
+            TraitFactory factory = CitizensAPI.getTraitFactory();
+            factory.registerTrait(TraitInfo.create(NPCTrait.class).withName("sellonclick"));
+            npc.addTrait(factory.getTrait("sellonclick"));
+            Debug.log("The NPC's trait has been registered.");
         }
         else {
             Debug.warn("No NPC location was found!");
