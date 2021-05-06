@@ -1,8 +1,12 @@
 package com.characterlim.exportsplugin.config;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.List;
+import java.util.Map;
 
 public class ConfigManager {
 
@@ -14,13 +18,14 @@ public class ConfigManager {
     private static final String NPC_ID_KEY = "npc.id";
     private static final String NPC_NAME_KEY = "npc.name";
     private static final String NPC_LOCATION_KEY = "npc.location";
+    private static final String BASE_PRICE_KEY = "base-price";
+    private static final String EXPORT_ITEMS_KEY = "export-items";
+    private static final String EXPORT_COUNTS_KEY = "export-counts";
 
     public static void prepare(JavaPlugin plugin) {
         ConfigManager.plugin = plugin;
         plugin.saveDefaultConfig();
         config = plugin.getConfig();
-        //prepareDefaults();
-        //plugin.saveDefaultConfig();
     }
 
     public static String getPrefix() {
@@ -74,6 +79,33 @@ public class ConfigManager {
 
     public static void setNPCLocation(Location location) {
         config.set(NPC_LOCATION_KEY, location);
+        plugin.saveConfig();
+    }
+
+    public static int getBasePrice() {
+        return config.getInt(BASE_PRICE_KEY);
+    }
+
+    public static void setBasePrice(int price) {
+        config.set(BASE_PRICE_KEY, price);
+        plugin.saveConfig();
+    }
+
+    public static List<String> getExportItems() {
+        return config.getStringList(EXPORT_ITEMS_KEY);
+    }
+
+    public static void setExportItems(List<String> items) {
+        config.set(EXPORT_ITEMS_KEY, items);
+        plugin.saveConfig();
+    }
+
+    public static List<Integer> getExportCounts() {
+        return config.getIntegerList(EXPORT_COUNTS_KEY);
+    }
+
+    public static void setExportCounts(List<Integer> items) {
+        config.set(EXPORT_COUNTS_KEY, items);
         plugin.saveConfig();
     }
 
