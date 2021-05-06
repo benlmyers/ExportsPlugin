@@ -33,4 +33,8 @@ public class EconomyManager {
             Comm.send(player, "An error occurred: &c" + r.errorMessage);
         }
     }
+
+    public static String formatted(int amount) {
+        return "&e" + econ.format(amount).substring(1) + "&7g";
+    }
 }

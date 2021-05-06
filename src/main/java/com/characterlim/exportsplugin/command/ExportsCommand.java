@@ -26,6 +26,7 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
         children.put("npc", new NPCCommand());
         children.put("help", null);
         children.put("reload", null);
+        children.put("itemname", null);
     }
 
     @Override
@@ -57,6 +58,7 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
             String arg = args[0].toLowerCase();
             if(arg.equals("reload")) return doReload(commandSender);
             else if(arg.equals("help")) return doHelp(commandSender);
+            else if(arg.equals("itemname")) return itemName(commandSender);
             else {
                 ChildCommand child = children.get(arg);
                 if(child != null) {
@@ -79,6 +81,16 @@ public class ExportsCommand extends ParentCommand implements TabExecutor {
     @Override
     public String thisCommand() {
         return "exports";
+    }
+
+    private boolean itemName(CommandSender sender) {
+        if(sender instanceof Player) {
+            Player player = (Player) sender;
+            String itemName = player.getInventory().getItemInMainHand().getType().toString();
+            Comm.send(player, "Material Name: &b" + itemName);
+            return true;
+        }
+        return false;
     }
 
     private boolean doReload(CommandSender sender) {

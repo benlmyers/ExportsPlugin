@@ -2,6 +2,18 @@ prefix: "&b[&9Merchant&b] "
 
 log-to-console: true
 
+base-price: 1000
+
+export-items:
+  - 'iron_ingot'
+  - 'gold_ingot'
+  - 'diamond'
+
+export-counts:
+  - 1
+  - 1
+  - 1
+
 npc:
 
   id: 19

@@ -6,12 +6,15 @@ import com.characterlim.exportsplugin.debug.Debug;
 import com.characterlim.exportsplugin.debug.DependencyChecker;
 import com.characterlim.exportsplugin.manager.EconomyManager;
 import com.characterlim.exportsplugin.manager.NPCManager;
+import com.characterlim.exportsplugin.manager.PriceManager;
+import com.characterlim.exportsplugin.manager.RotationManager;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ExportsPlugin extends JavaPlugin {
 
     private final TabExecutor exportsCommand = new ExportsCommand(this);
+    private final RotationManager rotationManager = new RotationManager(this);
     private final String[] pluginNames = {"Citizens", "Vault"};
     private DependencyChecker dependencyChecker;
 
@@ -26,6 +29,8 @@ public class ExportsPlugin extends JavaPlugin {
         dependencyChecker.check();
         NPCManager.enable();
         Debug.log("Setup complete.");
+        rotationManager.start();
+        PriceManager.check();
     }
 
     @Override

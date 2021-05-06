@@ -2,6 +2,7 @@ package com.characterlim.exportsplugin;
 
 import com.characterlim.exportsplugin.communication.Comm;
 import com.characterlim.exportsplugin.debug.Debug;
+import com.characterlim.exportsplugin.manager.InventoryManager;
 import net.citizensnpcs.api.event.NPCLeftClickEvent;
 import net.citizensnpcs.api.event.NPCRightClickEvent;
 import net.citizensnpcs.api.trait.Trait;
@@ -20,7 +21,8 @@ public class NPCTrait extends Trait {
     @EventHandler
     public void click(NPCRightClickEvent event) {
         if(event.getNPC() == this.getNPC()) {
-            Comm.send(event.getClicker(), "You right-clicked me!");
+            //if(InventoryManager.removeStackFromInventory())
+            Comm.send(event.getClicker(),"ri");
         }
     }
 
