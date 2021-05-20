@@ -27,8 +27,8 @@ public class NPCManager {
     }
 
     public static void enable() {
-        //Location loc = ConfigManager.getNPCLocation();
-        //setupNPC(loc);
+        Location loc = ConfigManager.getNPCLocation();
+        setupNPC(loc);
     }
 
     public static void disable() {
