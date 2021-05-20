@@ -1,29 +1,91 @@
-prefix: "&b[&9Merchant&b] "
-
+prefix: '&b[&9Merchant&b] '
 log-to-console: true
-
-base-price: 1000
-
-time-interval: 15
-
+base-price: 250
+time-interval: 1
 export-items:
-  - 'IRON_INGOT'
-  - 'GOLD_INGOT'
-  - 'DIAMOND'
-
+  - RAW_BEEF
+  - RAW_CHICKEN
+  - QUARTZ
+  - PRISMARINE_SHARD
+  - PRISMARINE_CRYSTALS
+  - RABBIT_HIDE
+  - PORK
+  - MELON
+  - SPIDER_EYE
+  - BROWN_MUSHROOM
+  - RED_MUSHROOM
+  - SUGAR_CANE_BLOCK
+  - REDSTONE
+  - COAL
+  - DIAMOND
+  - CACTUS
+  - IRON_INGOT
+  - GOLD_INGOT
+  - FEATHER
+  - STRING
+  - SULPHUR
+  - SEEDS
+  - CROPS
+  - FLINT
+  - SLIME_BALL
+  - LEATHER
+  - EGG
+  - INK_SACK
+  - BONE
+  - BLAZE_ROD
+  - NETHER_WARTS
+  - EMERALD
+  - CARROT_ITEM
+  - POTATO_ITEM
+  - RABBIT
+  - MUTTON
+  - BEETROOT
+  - ARROW
+  - MAGMA_CREAM
 export-counts:
   - 1
   - 1
   - 1
-
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
 npc:
-
-  id: 19
-
+  id: 60
   skin: anchiebee
-
   name: Merchant
-
   location:
     ==: org.bukkit.Location
     world: world

@@ -14,8 +14,11 @@ import java.util.List;
 public class RotationManager {
 
     private static Material acceptedItem;
+    private static Material nextItem;
 
     public static void start(Plugin plugin) {
+        List<String> items = ConfigManager.getExportItems();
+        nextItem = Material.getMaterial(items.get((int) Math.floor(items.size() * Math.random())));
         Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             @Override
             public void run() {
@@ -35,16 +38,17 @@ public class RotationManager {
 
     public static void rotate() {
         List<String> items = ConfigManager.getExportItems();
-        Material newItem = acceptedItem;
+        acceptedItem = nextItem;
+        Material newItem = nextItem;
         int count = 3;
-        while(newItem == acceptedItem && count > 0) {
+        while(newItem == nextItem && count > 0) {
             newItem = Material.getMaterial(items.get((int) Math.floor(items.size() * Math.random())));
             if(newItem == null) {
                 newItem = Material.BONE;
             }
             count -= 1;
         }
-        acceptedItem = newItem;
+        nextItem = newItem;
         int sellPrice = PriceManager.getSellPrice(acceptedItem.toString());
         Comm.broadcast("Stacks of &9" + getFormattedName(acceptedItem) + "&b are now available for export! Sell Price: " + EconomyManager.formatted(sellPrice));
     }

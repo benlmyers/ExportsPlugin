@@ -36,7 +36,7 @@ public class PriceManager {
         int n = counts.get(i);
         int m = items.size();
         int base = ConfigManager.getBasePrice();
-        int startPrice = base * m;
+        int startPrice = base / m;
         int totalExports = totalOf(counts);
         double p = (double)n / (double)totalExports;
         double price = startPrice / p;

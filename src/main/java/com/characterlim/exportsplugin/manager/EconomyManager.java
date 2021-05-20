@@ -35,6 +35,6 @@ public class EconomyManager {
     }
 
     public static String formatted(int amount) {
-        return "&e" + econ.format(amount).substring(1) + "&7g";
+        return "&e" + econ.format(amount) + "&7";
     }
 }
