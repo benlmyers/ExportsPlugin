@@ -31,6 +31,10 @@ public class RotationManager {
         return acceptedItem;
     }
 
+    public static Material getNextItem() {
+        return nextItem;
+    }
+
     public static int getSellPrice() {
         int sellPrice = PriceManager.getSellPrice(acceptedItem.toString());
         return sellPrice;
